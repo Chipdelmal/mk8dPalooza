@@ -25,3 +25,4 @@ votesDF = pd.DataFrame(
     index=list(VOTES_RAW.keys()), 
     columns=cst.TRACKS
 )
+votesDF.to_csv('./dta/votesDataframe.csv')
