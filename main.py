@@ -10,19 +10,14 @@ TRK_SET = set(cst.TRACKS)
 # Load and validate votes 
 ###############################################################################
 VOTES_RAW = {'April': vos.APRIL}
-VOTES = list(VOTES_RAW.values())
+(NAMES, VOTES) = (list(VOTES_RAW.keys()), list(VOTES_RAW.values()))
 # Validate --------------------------------------------------------------------
-lens = fun.countTiersVotes(VOTES)
-diffs = fun.countDiffsWithPool(VOTES, TRK_SET)
-for (ix, i) in enumerate(zip(lens, diffs)):
-    print('* [{}] Len: {}, Diff: {}'.format(ix, *i))
+valid = fun.validateEntries(VOTES, TRK_SET)
+for (ix, i) in enumerate(valid):
+    print('* {}: {}'.format(NAMES[ix], valid[ix]))
 ###############################################################################
 # Collate Votes
 ###############################################################################
 collated = [fun.flattenDictionary(fun.getVotesDictionary(i)) for i in VOTES]
-votesDF = pd.DataFrame(
-    collated, 
-    index=list(VOTES_RAW.keys()), 
-    columns=cst.TRACKS
-)
+votesDF = pd.DataFrame(collated, index=NAMES, columns=cst.TRACKS)
 votesDF.to_csv('./dta/votesDataframe.csv')

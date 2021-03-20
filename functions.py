@@ -23,3 +23,11 @@ def getVotesDictionary(vote):
     vote.reverse()
     voteDict = [{i: jx for i in j} for (jx, j) in enumerate(vote)]
     return voteDict
+
+
+def validateEntries(votes, TRK_SET):
+    lens = countTiersVotes(votes)
+    diffs = countDiffsWithPool(votes, TRK_SET)
+    vPairs = zip(lens, diffs)
+    valid = [True if (len(x[0]) == 1 and x[1] == 0) else False for x in vPairs]
+    return valid
