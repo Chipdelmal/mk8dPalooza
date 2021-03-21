@@ -9,7 +9,9 @@ TRK_SET = set(cst.TRACKS)
 ###############################################################################
 # Load and validate votes 
 ###############################################################################
-VOTES_RAW = {'April': vos.APRIL}
+VOTES_RAW = {
+    'April': vos.APRIL, 'Riche': vos.RICHIE, 'Chip': vos.CHIP
+}
 (NAMES, VOTES) = (list(VOTES_RAW.keys()), list(VOTES_RAW.values()))
 # Validate --------------------------------------------------------------------
 valid = fun.validateEntries(VOTES, TRK_SET)
