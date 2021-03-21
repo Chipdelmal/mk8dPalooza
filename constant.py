@@ -11,5 +11,6 @@ TRACKS = [
     'GCN Yoshi Circuit', 'Excitebike Arena', 'Dragon Driftway', 'Mute City',
     "Wii Wario's Gold Mine", 'SNES Rainbow Road', 'Ice Ice Outpost', 'Hyrule Circuit',
     'GCN Baby Park', 'GBA Cheese Land', 'Wild Woods', 'Animal Crossing',
-    '3DS Neo Bowser City', 'GBA Ribbon Road', 'Super Bell Subway','Big Blue'
+    '3DS Neo Bowser City', 'GBA Ribbon Road', 'Super Bell Subway', 'Big Blue'
 ]
+

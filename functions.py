@@ -20,8 +20,8 @@ def flattenDictionary(dictionary):
 
 
 def getVotesDictionary(vote):
-    vote.reverse()
-    voteDict = [{i: jx for i in j} for (jx, j) in enumerate(vote)]
+    num = len(vote)-1
+    voteDict = [{i: 1+num-jx for i in j} for (jx, j) in enumerate(vote)]
     return voteDict
 
 

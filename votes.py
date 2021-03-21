@@ -31,3 +31,14 @@ CHIP = [
     ('3DS Neo Bowser City', "Bowser's Castle", 'Cloudtop Cruise', '3DS DK Jungle', 'Twisted Mansion', 'GBA Cheese Land'),
     ('Excitebike Arena', 'GCN Baby Park', 'Wii Grumble Volcano', "N64 Toad's Turnpike", 'GCN Dry Dry Desert', '3DS Piranha Plant Slide')
 ]
+
+YAMI = [
+    ('Electrodrome', 'Sunshine Airport', 'Wii Moo Moo Meadows', 'Excitebike Arena', 'SNES Rainbow Road', "Wii Wario's Gold Mine"),
+    ('N64 Rainbow Road', 'Toad Harbor', 'Thwomp Ruins', 'N64 Yoshi Valley', 'DS Tick-Tock Clock', 'Water Park'),
+    ('Cloudtop Cruise', 'Dolphin Shoals', 'Mario Circuit', 'GBA Mario Circuit', 'Wild Woods', 'Mario Kart Stadium'),
+    ('Hyrule Circuit', '3DS Music Park', 'DS Cheep Cheep Beach', 'Sweet Sweet Canyon',  'Twisted Mansion', 'Ice Ice Outpost'),
+    ('Bone-Dry Dunes', 'Wii Grumble Volcano', "Bowser's Castle", 'GCN Baby Park', 'Mute City', 'GBA Ribbon Road'),
+    ('Big Blue', 'GCN Sherbet Land', 'GCN Dry Dry Desert', 'Mount Wario', 'Animal Crossing', 'N64 Royal Raceway'),
+    ('SNES Donut Plains 3', 'Shy Guy Falls', "N64 Toad's Turnpike", 'DS Wario Stadium', '3DS DK Jungle', '3DS Piranha Plant Slide'),
+    ('Dragon Driftway', 'Rainbow Road', '3DS Neo Bowser City', 'GBA Cheese Land', 'GCN Yoshi Circuit', 'Super Bell Subway')
+]
