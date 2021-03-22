@@ -4,7 +4,10 @@ import numpy as np
 import pandas as pd
 import votes as vos
 from pywaffle import Waffle 
-import matplotlib.pyplot as plt 
+import matplotlib.pyplot as plt
+from scipy.spatial import distance
+from sklearn.preprocessing import normalize
+from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics.pairwise import cosine_similarity
 import constant as cst
 import functions as fun
@@ -101,6 +104,26 @@ votesDF.to_csv('./dta/votesDataframe.csv')
 ###############################################################################
 # Cosine Similarity
 ###############################################################################
-a = np.asarray(votesDF.loc['Alele'].values)
-b = np.asarray(votesDF.loc['Chip'].values)
-cosine_similarity([a], [b])
+mat = []
+for a in [np.asarray(votesDF.loc[nme].values) for nme in NAMES]:
+    mat.append(
+        [cosine_similarity([a], [np.asarray(votesDF.loc[b].values)])[0][0] for b in NAMES]
+    )
+mat = np.asarray(mat)
+np.fill_diagonal(mat, 0)
+# nrm = np.asarray([[i/np.sum(row) for i in row] for row in mat])
+
+scaler = MinMaxScaler(feature_range=(0, 100))
+scaler.fit_transform(mat)
+
+###############################################################################
+# Euclidean Distance
+###############################################################################
+mat = []
+for a in [np.asarray(votesDF.loc[nme].values) for nme in NAMES]:
+    mat.append(
+        [distance.euclidean(a, np.asarray(votesDF.loc[b].values)) for b in NAMES]
+    )
+mat = np.asarray(mat)
+mat
+
