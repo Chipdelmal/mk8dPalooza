@@ -42,3 +42,25 @@ YAMI = [
     ('SNES Donut Plains 3', 'Shy Guy Falls', "N64 Toad's Turnpike", 'DS Wario Stadium', '3DS DK Jungle', '3DS Piranha Plant Slide'),
     ('Dragon Driftway', 'Rainbow Road', '3DS Neo Bowser City', 'GBA Cheese Land', 'GCN Yoshi Circuit', 'Super Bell Subway')
 ]
+
+ALELE = [
+    ('Mount Wario', 'GCN Baby Park', 'Wii Moo Moo Meadows', 'Excitebike Arena', 'DS Cheep Cheep Beach', 'GCN Dry Dry Desert'),
+    ('Dolphin Shoals', 'Water Park', 'Wii Grumble Volcano', 'Toad Harbor', "N64 Toad's Turnpike", 'GBA Mario Circuit'),
+    ('Sunshine Airport', 'DS Wario Stadium', "Wii Wario's Gold Mine", 'GCN Sherbet Land', 'Animal Crossing', 'Super Bell Subway'),
+    ('Mario Kart Stadium', 'N64 Yoshi Valley', 'Big Blue', '3DS Neo Bowser City', 'Mute City', 'Shy Guy Falls'),
+    ('DS Tick-Tock Clock', 'Sweet Sweet Canyon', 'N64 Royal Raceway', 'Mario Circuit', 'Thwomp Ruins', '3DS DK Jungle'),
+    ('GBA Cheese Land', 'Twisted Mansion', 'Bone-Dry Dunes', 'Ice Ice Outpost', 'Wild Woods', 'GCN Yoshi Circuit'),
+    ('Hyrule Circuit', 'GBA Ribbon Road', 'Cloudtop Cruise', "Bowser's Castle", 'Rainbow Road', 'SNES Donut Plains 3'),
+    ('Electrodrome', 'Dragon Driftway', 'SNES Rainbow Road', '3DS Music Park', '3DS Piranha Plant Slide', 'N64 Rainbow Road')
+]
+
+CHRIS = [
+    ('SNES Rainbow Road', 'N64 Yoshi Valley', "Bowser's Castle", 'Dragon Driftway', 'Bone-Dry Dunes', 'GBA Ribbon Road'),
+    ('3DS Music Park', 'Electrodrome', 'Rainbow Road', 'N64 Rainbow Road', 'Mute City', 'GBA Cheese Land'),
+    ('Cloudtop Cruise', 'Sunshine Airport', 'DS Tick-Tock Clock', 'Big Blue', 'DS Wario Stadium', 'Wii Grumble Volcano'),
+    ('GCN Yoshi Circuit', '3DS Neo Bowser City', 'Mount Wario', 'Thwomp Ruins', 'GCN Dry Dry Desert', 'Sweet Sweet Canyon'),
+    ('Toad Harbor', 'Wii Moo Moo Meadows', 'N64 Royal Raceway', 'Hyrule Circuit', 'Shy Guy Falls', '3DS DK Jungle'),
+    ('GBA Mario Circuit', 'Wild Woods', 'SNES Donut Plains 3', 'Ice Ice Outpost', "Wii Wario's Gold Mine", '3DS Piranha Plant Slide'),
+    ('Mario Kart Stadium', 'Mario Circuit', 'Water Park', 'Dolphin Shoals', 'GCN Sherbet Land', 'DS Cheep Cheep Beach'),
+    ('Excitebike Arena', 'GCN Baby Park', "N64 Toad's Turnpike", 'Animal Crossing', 'Twisted Mansion', 'Super Bell Subway')
+]

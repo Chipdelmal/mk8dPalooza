@@ -8,17 +8,18 @@ import constant as cst
 import functions as fun
 import squarify 
 # https://pywaffle.readthedocs.io/en/latest/
+# https://plotly.com/python/treemaps/
 
 TRK_SET = set(cst.TRACKS)
 COLORS = [
-    '#22a5f1', '#2837af', '#f00fbf', '#45d40c'
+    '#2EB2FF', '#2837af', '#f00fbf', '#45d40c', '#e30018', '#FCE900'
 ]
 ###############################################################################
 # Load and validate votes 
 ###############################################################################
 VOTES_RAW = {
-    'April': vos.APRIL, 'Chip': vos.CHIP,
-    'Riche': vos.RICHIE, 'Yami': vos.YAMI
+    'April': vos.APRIL, 'Chip': vos.CHIP, 'Riche': vos.RICHIE, 
+    'Yami': vos.YAMI, 'Alele': vos.ALELE, 'Chris': vos.CHRIS
 }
 (NAMES, VOTES) = (list(VOTES_RAW.keys()), list(VOTES_RAW.values()))
 # Validate --------------------------------------------------------------------
@@ -37,49 +38,58 @@ track = cst.TRACKS[2]
 for track in cst.TRACKS:
     # (fig, ax) = plt.subplots(figsize=(10, 10))
     # Waffle ------------------------------------------------------------------
-    # fig = plt.figure( 
-    #     values=votesDF[track], labels=list(votesDF.index),
-    #     FigureClass=Waffle,
-    #     vertical=False, columns=8, 
-    #     rows=5,
-    #     # block_arranging_style='new-line',
-    #     block_aspect_ratio=1,
-    #     rounding_rule='floor',
-    #     starting_location='NW',
-    #     colors=COLORS,
-    #     # title={
-    #     #     'label': "{}: {}\n".format(track, sum(votesDF[track])),
-    #     #     'loc': 'center', 'fontdict': {'fontsize': 20}
-    #     # },
-    #     legend={
-    #         'loc': 'lower left',
-    #         'bbox_to_anchor': (0, -0.4),
-    #         'ncol': 2, #len(votesDF),
-    #         'framealpha': 0,
-    #         'fontsize': 12
-    #     }
-    # )
-    # fig.set_size_inches(5, 5)
-    # fig.ax.set_aspect(1)
-    # plt.axis('off')
-    # fig.savefig('./plt/'+track+'_waffle.png', dpi=500)
-    # Treemap -----------------------------------------------------------------
-    (fig, ax) = plt.subplots(figsize=(10, 10))
-    sizes = list(votesDF[track])
-    label = list(votesDF.index)
-    text = ['{}: {}'.format(*i) for i in zip(label, sizes)]
-    ax = squarify.plot(
-        sizes=sizes, label=text, 
-        alpha=0.9, color=COLORS,
-        text_kwargs={'fontsize':15, 'color': "White"} #, 'fontweight': 'bold'}
+    votes = sum(votesDF[track])
+    fig = plt.figure( 
+        values=votesDF[track], labels=list(votesDF.index),
+        FigureClass=Waffle,
+        vertical=False, columns=10, 
+        # rows=5,
+        # block_arranging_style='new-line',
+        block_aspect_ratio=1,
+        rounding_rule='floor',
+        starting_location='NW',
+        colors=COLORS,
+        title={
+            'label': "{}: {}\n".format(track, sum(votesDF[track])),
+            'loc': 'center', 'fontdict': {'fontsize': 20}
+        },
+        legend={
+            'loc': 'lower left',
+            'bbox_to_anchor': (0, -0.4),
+            'ncol': 10, #len(votesDF),
+            'framealpha': 0,
+            'fontsize': 12
+        }
     )
-    plt.title(
-        "{}: {}".format(track, sum(votesDF[track])), 
-        fontsize=20, color="Black", fontweight='bold'
-    )
-    ax.set_aspect(.95)
+    fig.set_size_inches(10, 5)
+    fig.ax.set_aspect(1)
     plt.axis('off')
-    fig.savefig('./plt/'+track+'_TM.png', dpi=500, bbox_inches='tight')
+    fig.savefig(
+        './plt/WF_{}_{}.png'.format(str(votes).zfill(2), track), 
+        dpi=500, bbox_inches='tight'
+    )
+    # Treemap -----------------------------------------------------------------
+    # (fig, ax) = plt.subplots(figsize=(10, 10))
+    # sizes = list(votesDF[track])
+    # label = list(votesDF.index)
+    # votes = sum(votesDF[track])
+    # text = ['{}: {}'.format(*i) for i in zip(label, sizes)]
+    # ax = squarify.plot(
+    #     sizes=sizes, label=text, 
+    #     alpha=1, color=COLORS,
+    #     text_kwargs={'fontsize':12-5, 'color': "White"} #, 'fontweight': 'bold'}
+    # )
+    # plt.title(
+    #     "{}: {}".format(track, votes), 
+    #     fontsize=20, color="Black", fontweight='bold'
+    # )
+    # ax.set_aspect(.95)
+    # plt.axis('off')
+    # fig.savefig(
+    #     './plt/TM_{}_{}.png'.format(str(votes).zfill(2), track), 
+    #     dpi=500, bbox_inches='tight'
+    # )
+    plt.close('all')
 ###############################################################################
 # Add Stats
 ###############################################################################
