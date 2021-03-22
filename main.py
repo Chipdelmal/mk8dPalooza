@@ -1,12 +1,14 @@
 
+import squarify
 import numpy as np
 import pandas as pd
 import votes as vos
-import matplotlib.pyplot as plt 
 from pywaffle import Waffle 
+import matplotlib.pyplot as plt 
+from sklearn.metrics.pairwise import cosine_similarity
 import constant as cst
 import functions as fun
-import squarify 
+
 # https://pywaffle.readthedocs.io/en/latest/
 # https://plotly.com/python/treemaps/
 
@@ -44,7 +46,7 @@ for track in cst.TRACKS:
         FigureClass=Waffle,
         vertical=False, columns=10, 
         # rows=5,
-        # block_arranging_style='new-line',
+        block_arranging_style='new-line',
         block_aspect_ratio=1,
         rounding_rule='floor',
         starting_location='NW',
@@ -69,26 +71,26 @@ for track in cst.TRACKS:
         dpi=500, bbox_inches='tight'
     )
     # Treemap -----------------------------------------------------------------
-    # (fig, ax) = plt.subplots(figsize=(10, 10))
-    # sizes = list(votesDF[track])
-    # label = list(votesDF.index)
-    # votes = sum(votesDF[track])
-    # text = ['{}: {}'.format(*i) for i in zip(label, sizes)]
-    # ax = squarify.plot(
-    #     sizes=sizes, label=text, 
-    #     alpha=1, color=COLORS,
-    #     text_kwargs={'fontsize':12-5, 'color': "White"} #, 'fontweight': 'bold'}
-    # )
-    # plt.title(
-    #     "{}: {}".format(track, votes), 
-    #     fontsize=20, color="Black", fontweight='bold'
-    # )
-    # ax.set_aspect(.95)
-    # plt.axis('off')
-    # fig.savefig(
-    #     './plt/TM_{}_{}.png'.format(str(votes).zfill(2), track), 
-    #     dpi=500, bbox_inches='tight'
-    # )
+    (fig, ax) = plt.subplots(figsize=(10, 10))
+    sizes = list(votesDF[track])
+    label = list(votesDF.index)
+    votes = sum(votesDF[track])
+    text = ['{}: {}'.format(*i) for i in zip(label, sizes)]
+    ax = squarify.plot(
+        sizes=sizes, # label=text, 
+        alpha=1, color=COLORS,
+        text_kwargs={'fontsize':12-5, 'color': "White"} #, 'fontweight': 'bold'}
+    )
+    plt.title(
+        "{}: {}".format(track, votes), 
+        fontsize=20, color="Black", fontweight='bold'
+    )
+    ax.set_aspect(.95)
+    plt.axis('off')
+    fig.savefig(
+        './plt/TM_{}_{}.png'.format(str(votes).zfill(2), track), 
+        dpi=500, bbox_inches='tight'
+    )
     plt.close('all')
 ###############################################################################
 # Add Stats
@@ -96,3 +98,9 @@ for track in cst.TRACKS:
 votesDF.loc['Total']= votesDF.sum()
 votesDF.loc['Mean']= votesDF.mean()
 votesDF.to_csv('./dta/votesDataframe.csv')
+###############################################################################
+# Cosine Similarity
+###############################################################################
+a = np.asarray(votesDF.loc['Alele'].values)
+b = np.asarray(votesDF.loc['Chip'].values)
+cosine_similarity([a], [b])
