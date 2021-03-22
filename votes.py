@@ -64,3 +64,14 @@ CHRIS = [
     ('Mario Kart Stadium', 'Mario Circuit', 'Water Park', 'Dolphin Shoals', 'GCN Sherbet Land', 'DS Cheep Cheep Beach'),
     ('Excitebike Arena', 'GCN Baby Park', "N64 Toad's Turnpike", 'Animal Crossing', 'Twisted Mansion', 'Super Bell Subway')
 ]
+
+TOMAS = [
+    ("N64 Toad's Turnpike", 'Mount Wario', 'GCN Baby Park', 'N64 Rainbow Road', "Wii Wario's Gold Mine", 'N64 Yoshi Valley'),
+    ('Animal Crossing', 'Toad Harbor', 'DS Tick-Tock Clock', 'Dolphin Shoals', 'Thwomp Ruins', 'Sunshine Airport'),
+    ('3DS DK Jungle', 'Excitebike Arena', 'DS Cheep Cheep Beach', 'Hyrule Circuit', 'Big Blue', 'Shy Guy Falls'),
+    ('Mute City', 'Wild Woods', 'Ice Ice Outpost', 'SNES Rainbow Road', 'GCN Yoshi Circuit', 'GCN Dry Dry Desert'),
+    ('Electrodrome', 'N64 Royal Raceway', 'Mario Circuit', 'Cloudtop Cruise', 'Mario Kart Stadium', 'GBA Mario Circuit'),
+    ('Sweet Sweet Canyon', 'GCN Sherbet Land', 'SNES Donut Plains 3', 'GBA Cheese Land', 'Water Park', '3DS Music Park'),
+    ('Wii Grumble Volcano', 'GBA Ribbon Road', 'Wii Moo Moo Meadows', '3DS Piranha Plant Slide', 'DS Wario Stadium', "Bowser's Castle"),
+    ('Dragon Driftway', 'Rainbow Road', 'Super Bell Subway', '3DS Neo Bowser City', 'Twisted Mansion', 'Bone-Dry Dunes')
+]

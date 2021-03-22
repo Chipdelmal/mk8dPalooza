@@ -7,8 +7,10 @@ from pywaffle import Waffle
 import matplotlib.pyplot as plt
 from scipy.spatial import distance
 from sklearn.preprocessing import normalize
+from scipy.spatial.distance import squareform
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics.pairwise import cosine_similarity
+from scipy.cluster.hierarchy import dendrogram, linkage
 import constant as cst
 import functions as fun
 
@@ -17,14 +19,18 @@ import functions as fun
 
 TRK_SET = set(cst.TRACKS)
 COLORS = [
-    '#2EB2FF', '#2837af', '#f00fbf', '#45d40c', '#e30018', '#FCE900'
+    '#2EB2FF', '#2837af', '#f00fbf', '#757aff', '#e30018',  '#45d40c',
+    '#FCE900', '#ffffff'
 ]
+MAX = 50
+COLORS = [i+'95' for i in COLORS]
 ###############################################################################
 # Load and validate votes 
 ###############################################################################
 VOTES_RAW = {
-    'April': vos.APRIL, 'Chip': vos.CHIP, 'Riche': vos.RICHIE, 
-    'Yami': vos.YAMI, 'Alele': vos.ALELE, 'Chris': vos.CHRIS
+    'April': vos.APRIL, 'Chip': vos.CHIP, 'Riché': vos.RICHIE, 
+    'Yami': vos.YAMI, 'Alele': vos.ALELE, 'Chris': vos.CHRIS,
+    'Tomás': vos.TOMAS
 }
 (NAMES, VOTES) = (list(VOTES_RAW.keys()), list(VOTES_RAW.values()))
 # Validate --------------------------------------------------------------------
@@ -44,11 +50,15 @@ for track in cst.TRACKS:
     # (fig, ax) = plt.subplots(figsize=(10, 10))
     # Waffle ------------------------------------------------------------------
     votes = sum(votesDF[track])
+    values = list(votesDF[track])
+    values.append(MAX-votes)
+    labels=list(votesDF.index)
+    labels.append('Padding')
     fig = plt.figure( 
-        values=votesDF[track], labels=list(votesDF.index),
+        values=values, labels=labels,
         FigureClass=Waffle,
         vertical=False, columns=10, 
-        # rows=5,
+        rows=5,
         block_arranging_style='new-line',
         block_aspect_ratio=1,
         rounding_rule='floor',
@@ -56,12 +66,13 @@ for track in cst.TRACKS:
         colors=COLORS,
         title={
             'label': "{}: {}\n".format(track, sum(votesDF[track])),
-            'loc': 'center', 'fontdict': {'fontsize': 20}
+            'loc': 'center', 
+            'fontdict': {'fontsize': 20, 'color': '#000000'}
         },
         legend={
             'loc': 'lower left',
             'bbox_to_anchor': (0, -0.4),
-            'ncol': 10, #len(votesDF),
+            'ncol': 4, #len(votesDF),
             'framealpha': 0,
             'fontsize': 12
         }
@@ -73,28 +84,29 @@ for track in cst.TRACKS:
         './plt/WF_{}_{}.png'.format(str(votes).zfill(2), track), 
         dpi=500, bbox_inches='tight'
     )
-    # Treemap -----------------------------------------------------------------
-    (fig, ax) = plt.subplots(figsize=(10, 10))
-    sizes = list(votesDF[track])
-    label = list(votesDF.index)
-    votes = sum(votesDF[track])
-    text = ['{}: {}'.format(*i) for i in zip(label, sizes)]
-    ax = squarify.plot(
-        sizes=sizes, # label=text, 
-        alpha=1, color=COLORS,
-        text_kwargs={'fontsize':12-5, 'color': "White"} #, 'fontweight': 'bold'}
-    )
-    plt.title(
-        "{}: {}".format(track, votes), 
-        fontsize=20, color="Black", fontweight='bold'
-    )
-    ax.set_aspect(.95)
-    plt.axis('off')
-    fig.savefig(
-        './plt/TM_{}_{}.png'.format(str(votes).zfill(2), track), 
-        dpi=500, bbox_inches='tight'
-    )
     plt.close('all')
+    # Treemap -----------------------------------------------------------------
+    # (fig, ax) = plt.subplots(figsize=(10, 10))
+    # sizes = list(votesDF[track])
+    # label = list(votesDF.index)
+    # votes = sum(votesDF[track])
+    # text = ['{}: {}'.format(*i) for i in zip(label, sizes)]
+    # ax = squarify.plot(
+    #     sizes=sizes, # label=text, 
+    #     alpha=.9, color=COLORS, pad=.1
+    #     text_kwargs={'fontsize':12-5, 'color': "White"} #, 'fontweight': 'bold'}
+    # )
+    # plt.title(
+    #     "{}: {}".format(track, votes), 
+    #     fontsize=20, color="Black", fontweight='bold'
+    # )
+    # ax.set_aspect(.95)
+    # plt.axis('off')
+    # fig.savefig(
+    #     './plt/TM_{}_{}.png'.format(str(votes).zfill(2), track), 
+    #     dpi=500, bbox_inches='tight'
+    # )
+    # plt.close('all')
 ###############################################################################
 # Add Stats
 ###############################################################################
@@ -125,5 +137,18 @@ for a in [np.asarray(votesDF.loc[nme].values) for nme in NAMES]:
         [distance.euclidean(a, np.asarray(votesDF.loc[b].values)) for b in NAMES]
     )
 mat = np.asarray(mat)
-mat
-
+np.fill_diagonal(mat, 0)
+fig, ax = plt.subplots()
+ax.matshow(mat, cmap='seismic', vmin=10, vmax=30)
+for (i, j), z in np.ndenumerate(mat):
+    ax.text(j, i, '{:0.1f}'.format(z), ha='center', va='center')
+ax.set_xticklabels(['']+NAMES)
+ax.set_yticklabels(['']+NAMES)
+fig.savefig(
+    './plt/SM.png', 
+    dpi=500, bbox_inches='tight'
+)
+dists = squareform(mat)
+linkage_matrix = linkage(dists, "single")
+dendrogram(linkage_matrix, labels=NAMES, color_threshold=0)
+plt.show()
