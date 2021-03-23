@@ -1,4 +1,6 @@
 
+import math
+
 def flattenList(newlist):
     return [item for items in newlist for item in items]
 
@@ -31,3 +33,6 @@ def validateEntries(votes, TRK_SET):
     vPairs = zip(lens, diffs)
     valid = [True if (len(x[0]) == 1 and x[1] == 0) else False for x in vPairs]
     return valid
+
+def roundup(x):
+    return int(math.ceil(x / 10.0)) * 10
