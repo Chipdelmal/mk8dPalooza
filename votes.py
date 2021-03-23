@@ -108,3 +108,14 @@ MEMO = [
     ('Ice Ice Outpost', 'GCN Baby Park', 'Animal Crossing', 'Sweet Sweet Canyon', '3DS Piranha Plant Slide', 'GBA Cheese Land'),
     ('Wii Grumble Volcano', 'Electrodrome', 'GCN Yoshi Circuit', 'DS Wario Stadium', 'SNES Donut Plains 3', 'Bone-Dry Dunes')
 ]
+
+LEO = [
+    ('Wii Moo Moo Meadows', 'Big Blue', 'SNES Rainbow Road', 'Mute City', 'Mario Circuit', 'Sunshine Airport'),
+    ('Rainbow Road', 'GCN Yoshi Circuit', 'Hyrule Circuit', '3DS Neo Bowser City', 'Dragon Driftway', 'N64 Rainbow Road'),
+    ('3DS Music Park', 'Mario Kart Stadium', 'Sweet Sweet Canyon', '3DS DK Jungle', "Bowser's Castle", 'Toad Harbor'),
+    ('Thwomp Ruins', 'Animal Crossing', 'Shy Guy Falls', 'N64 Royal Raceway', 'Electrodrome', 'GBA Cheese Land'),
+    ('GBA Mario Circuit', 'Cloudtop Cruise', 'Wii Grumble Volcano', 'N64 Yoshi Valley', 'DS Tick-Tock Clock', 'Water Park'),
+    ('GCN Dry Dry Desert', 'Bone-Dry Dunes', 'GBA Ribbon Road', 'Super Bell Subway', 'Wild Woods', 'Excitebike Arena'),
+    ('Ice Ice Outpost', 'Mount Wario', 'SNES Donut Plains 3', 'DS Wario Stadium', '3DS Piranha Plant Slide', "Wii Wario's Gold Mine"),
+    ("N64 Toad's Turnpike", 'Dolphin Shoals', 'DS Cheep Cheep Beach', 'Twisted Mansion', 'GCN Sherbet Land', 'GCN Baby Park')
+]

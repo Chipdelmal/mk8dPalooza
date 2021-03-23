@@ -23,7 +23,7 @@ TRK_SET = set(cst.TRACKS)
 COLORS = [
     '#2EB2FF', '#2837af', '#f00fbf', '#757aff', '#e30018',  
     '#45d40c', '#FCE900', '#92a0ab', '#F15062', '#ADE300', 
-    '#ffffff'
+    '#FF9175', '#ffffff'
 ]
 COLORS = [i+'95' for i in COLORS]
 ###############################################################################
@@ -33,7 +33,7 @@ VOTES_RAW = {
     'April': vos.APRIL, 'Chip': vos.CHIP, 'Riché': vos.RICHIE, 
     'Yami': vos.YAMI, 'Alele': vos.ALELE, 'Chris': vos.CHRIS,
     'Tomás': vos.TOMAS, 'Amaya': vos.AMAYA, 'Mary': vos.MARY,
-    'Memo': vos.MEMO
+    'Memo': vos.MEMO, 'Leo': vos.LEO
 }
 (NAMES, VOTES) = (list(VOTES_RAW.keys()), list(VOTES_RAW.values()))
 # Validate --------------------------------------------------------------------
@@ -66,7 +66,7 @@ for track in cst.TRACKS:
     )
     fig = plt.figure( 
         values=values+[MAX-sum(values)], 
-        labels=NAMES+['Padding'],
+        labels=NAMES+[''],
         FigureClass=Waffle,
         colors=COLORS,
         vertical=False, columns=10, rows=5,
@@ -143,8 +143,8 @@ plt.close('all')
 (fig, ax) = plt.subplots()
 chord_diagram(
     matSca, names=NAMES, colors=COLORS[:-1], alpha=.6,
-    use_gradient=True, sorts='distance'
-    # order=[NAMES.index(i) for i in dend['ivl']]
+    use_gradient=True, sorts='distance',
+    order=[NAMES.index(i) for i in dend['ivl']]
 )
 plt.savefig(
     './plt/CH.png', 
