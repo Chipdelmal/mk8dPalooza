@@ -7,19 +7,16 @@ import constant as cst
 import functions as fun
 
 
-PT_OUT = './dta/'
-TRK_SET = set(cst.TRACKS)
+(PT_DTA, FN_DTA) = (cst.PT_DTA, cst.FN_DTA)
+(PLYRS, TRK_SET) = (cst.PLYRS, set(cst.TRACKS))
 ###############################################################################
-# Load and validate votes 
+# Load Votes 
 ###############################################################################
-VOTES_RAW = {
-    'Alele': vos.ALELE, 'Amaya': vos.AMAYA, 'April': vos.APRIL, 
-    'Chip': vos.CHIP, 'Chris': vos.CHRIS, 'Leo': vos.LEO, 
-    'Mary': vos.MARY, 'Memo': vos.MEMO, 'Riché': vos.RICHIE, 
-    'Tomás': vos.TOMAS, 'Yami': vos.YAMI  
-}
+VOTES_RAW = {i: PLYRS[i]['votes'] for i in PLYRS.keys()}
 (NAMES, VOTES) = (list(VOTES_RAW.keys()), list(VOTES_RAW.values()))
-# Validate --------------------------------------------------------------------
+###############################################################################
+# Validate 
+###############################################################################
 valid = fun.validateEntries(VOTES, TRK_SET)
 print('(1) Check for consistency:')
 for (ix, i) in enumerate(valid):
@@ -30,7 +27,7 @@ if all(valid):
 else:
     print('\t* [Some entries contain errors!]')
 ###############################################################################
-# Collate Votes
+# Collate
 ###############################################################################
 collated = [fun.flattenDictionary(fun.getVotesDictionary(i)) for i in VOTES]
 votesDF = pd.DataFrame(collated, index=NAMES, columns=cst.TRACKS)
@@ -38,4 +35,7 @@ votesDF.loc['Total']= votesDF.sum()
 votesDF.loc['Mean']= votesDF.mean()
 votesDF.loc['Median']= votesDF.median()
 votesDF.loc['SD']= votesDF.std()
-votesDF.to_csv(path.join(PT_OUT, 'votesDataframe.csv'))
+###############################################################################
+# Export
+###############################################################################
+votesDF.to_csv(path.join(PT_DTA, FN_DTA))

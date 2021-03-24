@@ -1,6 +1,17 @@
 
 import votes as vos
 
+
+PRINT_STATS = False
+###############################################################################
+# Paths and Filenames
+###############################################################################
+(PT_DTA, PT_PLT) = ('./dta/', './plt/')
+FN_DTA = 'votesDataframe.csv'
+
+###############################################################################
+# List of Valid Tracks
+###############################################################################
 TRACKS = [
     'Mario Kart Stadium', 'Water Park', 'Sweet Sweet Canyon', 'Thwomp Ruins',
     'Mario Circuit', 'Toad Harbor', 'Twisted Mansion', 'Shy Guy Falls',
@@ -16,18 +27,21 @@ TRACKS = [
     '3DS Neo Bowser City', 'GBA Ribbon Road', 'Super Bell Subway', 'Big Blue'
 ]
 
-
+###############################################################################
+# Players Colors
+###############################################################################
 PLYRS = {
-    'April':    '#2EB2FF',
-    'Chip':     '#2837af',
-    'Riché':    '#f00fbf', 
-    'Mary':     '#757aff', 
-    'Memo':     '#e30018', 
-    'Chris':    '#45d40c', 
-    'Tomás':    '#FCE900', 
-    'Amaya':    '#92a0ab', 
-    'Yami':     '#F15062', 
-    'Alele':    '#ADE300', 
-    'Leo':      '#FF9175', 
-    '':         '#ffffff'
+    'Alele':    {'color': '#ADE300', 'votes': vos.ALELE },
+    'Amaya':    {'color': '#92a0ab', 'votes': vos.AMAYA }, 
+    'April':    {'color': '#2EB2FF', 'votes': vos.APRIL },
+    'Chip':     {'color': '#2837af', 'votes': vos.CHIP  },
+    'Chris':    {'color': '#45d40c', 'votes': vos.CHRIS },
+    'Leo':      {'color': '#FF9175', 'votes': vos.LEO   }, 
+    'Mary':     {'color': '#757aff', 'votes': vos.MARY  },
+    'Memo':     {'color': '#e30018', 'votes': vos.MEMO  },
+    'Riché':    {'color': '#f00fbf', 'votes': vos.RICHIE},
+    'Tomás':    {'color': '#FCE900', 'votes': vos.TOMAS },
+    'Yami':     {'color': '#F15062', 'votes': vos.YAMI  }  
 }
+VOID = ('', '#ffffff')
+ALPHA_HEX = '95'
