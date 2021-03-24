@@ -21,11 +21,13 @@ import functions as fun
 
 TRK_SET = set(cst.TRACKS)
 COLORS = [
-    '#2EB2FF', '#2837af', '#f00fbf', '#757aff', '#e30018',  
-    '#45d40c', '#FCE900', '#92a0ab', '#F15062', '#ADE300', 
-    '#FF9175', '#ffffff'
+    '#2EB2FF', '#2837af', '#f00fbf', 
+    '#757aff', '#e30018', '#45d40c', 
+    '#FCE900', '#92a0ab', '#F15062', 
+    '#ADE300', '#FF9175', '#ffffff'
 ]
 COLORS = [i+'95' for i in COLORS]
+DETAILED = False
 ###############################################################################
 # Load and validate votes 
 ###############################################################################
@@ -55,15 +57,24 @@ votesDF.to_csv('./dta/votesDataframe.csv')
 # Plots
 ###############################################################################
 MAX = fun.roundup(max(votesDF.loc['Total']))
+sorting = [int(i) for i in sorted(votesDF.loc['Total'])]
+sorting.reverse()
 print('* Plot:')
-for track in cst.TRACKS:
+for (ix, track) in enumerate(cst.TRACKS):
     print('\t* {}\r'.format(track))
     votes = int(votesDF[track]['Total'])
     values = list(votesDF[track][NAMES])
-    label = "{}: {} \n(μ: {:.2f}, M: {:.2f}, σ: {:.2f})\n".format(
-        track, votes, 
-        votesDF[track]['Mean'], votesDF[track]['Median'], votesDF[track]['SD']
-    )
+    if DETAILED:
+        label = "{}. {} ({}) \n(μ: {:.2f}, M: {:.2f}, σ: {:.2f})\n".format(
+            str(len(TRK_SET)-(ix+1)).zfill(2), track, votes, 
+            votesDF[track]['Mean'], votesDF[track]['Median'], 
+            votesDF[track]['SD']
+        )
+    else:
+        label = "{} ({}) {}: {}\n".format(
+            str(sorting.index(votes)+1).zfill(2), sorting.count(votes),
+            track, votes
+        )
     fig = plt.figure( 
         values=values+[MAX-sum(values)], 
         labels=NAMES+[''],
@@ -98,23 +109,28 @@ for track in cst.TRACKS:
 mat = []
 for a in [np.asarray(votesDF.loc[nme].values) for nme in NAMES]:
     mat.append(
-        [distance.euclidean(a, np.asarray(votesDF.loc[b].values)) for b in NAMES]
+        [distance.cosine(a, np.asarray(votesDF.loc[b].values)) for b in NAMES]
     )
 mat = np.asarray(mat)
 np.fill_diagonal(mat, 0)
-matSca = np.asarray([np.interp(a, (min(i for i in a if i > 0), a.max()), (1, 0)) for a in mat])
-matInv = np.asarray([np.interp(a, (min(i for i in a if i > 0), a.max()), (0, 1)) for a in mat])
-np.fill_diagonal(matSca, 0)
-np.fill_diagonal(matInv, 0)
+matSca = np.asarray([[100*(i)/sum(row) for i in row] for row in mat])
+matRan = np.asarray([np.interp(a, (min(i for i in a if i > 0), a.max()), (100, 10)) for a in matSca])
+np.fill_diagonal(matRan, 0)
+# matInv = np.asarray([np.interp(a, (min(i for i in a if i > 0), a.max()), (0, 1)) for a in mat])
 ###############################################################################
 # Matrix
 ###############################################################################
 (fig, ax) = plt.subplots()
-ax.matshow(matSca, cmap='Purples', vmin=0, vmax=1.3)
-for (i, j), z in np.ndenumerate(matSca):
-    ax.text(j, i, '{:0.2f}'.format(z), ha='center', va='center')
+ax.matshow(matRan, cmap='Blues_r', vmin=0, vmax=100)
+for (i, j), z in np.ndenumerate(matRan):
+    ax.text(j, i, '{}'.format(int(z)), ha='center', va='center', fontsize=4)
+ax.set_xticks(np.arange(-1, 11, 1))
+ax.set_yticks(np.arange(-1, 11, 1))
+plt.xticks(rotation=90)
 ax.set_xticklabels(['']+NAMES)
 ax.set_yticklabels(['']+NAMES)
+ax.set_xlim(-.5, 11)
+# ax.set_ylim(-.5, 11)
 fig.savefig(
     './plt/SM.png', 
     dpi=500, bbox_inches='tight'
@@ -126,8 +142,8 @@ plt.close('all')
 (fig, ax) = plt.subplots()
 dists = squareform(mat)
 linkage_matrix = linkage(dists, "ward")
-dend = dendrogram(linkage_matrix, labels=NAMES, color_threshold=0, orientation='right')
-ax.set_aspect(.5)
+dend = dendrogram(linkage_matrix, labels=NAMES, orientation='right') # color_threshold=0,
+ax.set_aspect(.005)
 plt.xticks([])
 ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
@@ -142,9 +158,9 @@ plt.close('all')
 ###############################################################################
 (fig, ax) = plt.subplots()
 chord_diagram(
-    matSca, names=NAMES, colors=COLORS[:-1], alpha=.6,
-    use_gradient=True, sorts='distance',
-    order=[NAMES.index(i) for i in dend['ivl']]
+    matRan, names=NAMES, colors=COLORS[:-1], alpha=.6,
+    use_gradient=True, sorts='distance', width=0.1, chordwidth=1
+    # order=[NAMES.index(i) for i in dend['ivl']]
 )
 plt.savefig(
     './plt/CH.png', 
