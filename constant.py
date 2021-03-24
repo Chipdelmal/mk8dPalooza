@@ -1,4 +1,6 @@
 
+import votes as vos
+
 TRACKS = [
     'Mario Kart Stadium', 'Water Park', 'Sweet Sweet Canyon', 'Thwomp Ruins',
     'Mario Circuit', 'Toad Harbor', 'Twisted Mansion', 'Shy Guy Falls',
@@ -14,3 +16,18 @@ TRACKS = [
     '3DS Neo Bowser City', 'GBA Ribbon Road', 'Super Bell Subway', 'Big Blue'
 ]
 
+
+PLYRS = {
+    'April':    '#2EB2FF',
+    'Chip':     '#2837af',
+    'Riché':    '#f00fbf', 
+    'Mary':     '#757aff', 
+    'Memo':     '#e30018', 
+    'Chris':    '#45d40c', 
+    'Tomás':    '#FCE900', 
+    'Amaya':    '#92a0ab', 
+    'Yami':     '#F15062', 
+    'Alele':    '#ADE300', 
+    'Leo':      '#FF9175', 
+    '':         '#ffffff'
+}
