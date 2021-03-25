@@ -3,6 +3,7 @@
 import numpy as np
 from os import path
 import pandas as pd
+from random import shuffle
 import constant as cst
 import functions as fun
 
@@ -15,6 +16,8 @@ import functions as fun
 ###############################################################################
 VOTES_DF = pd.read_csv(path.join(PT_DTA, FN_DTA), index_col=0)
 NAMES = list(PLYRS.keys())
+if cst.ANONYMIZE:
+    shuffle(NAMES)
 ###############################################################################
 # Distance
 ###############################################################################

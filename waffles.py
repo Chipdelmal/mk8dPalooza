@@ -1,6 +1,7 @@
 
 from os import path
 import pandas as pd
+from random import shuffle
 from pywaffle import Waffle
 import matplotlib.pyplot as plt
 import constant as cst
@@ -18,11 +19,16 @@ COLORS = [PLYRS[i]['color'] for i in PLYRS.keys()]
 COLORS = [(i + cst.ALPHA_HEX) for i in COLORS]
 MAX = fun.roundup(max(VOTES_DF.loc['Total']))
 SORTING = [int(i) for i in sorted(VOTES_DF.loc['Total'])][::-1]
+TRACKS = cst.TRACKS
+if cst.ANONYMIZE:
+    shuffle(NAMES)
+    shuffle(COLORS)
+    shuffle(TRACKS)
 ###############################################################################
 # Plots
 ###############################################################################
-print('(6) Plotting Waffles')
-for (ix, track) in enumerate(cst.TRACKS):
+print('(7) Plotting Waffles')
+for (ix, track) in enumerate(TRACKS):
     print('\t* {}{}'.format(track, ' '*10), end='\r')
     votes = int(VOTES_DF[track]['Total'])
     values = list(VOTES_DF[track][NAMES])
@@ -54,7 +60,7 @@ for (ix, track) in enumerate(cst.TRACKS):
         },
         legend={
             'loc': 'lower left', 'bbox_to_anchor': (0, -0.4),
-            'ncol': 4, 'framealpha': 0, 'fontsize': 12
+            'ncol': 5, 'framealpha': 0, 'fontsize': 12
         }
     )
     fig.set_size_inches(10, 5)

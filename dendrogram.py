@@ -1,6 +1,7 @@
 
 import numpy as np
 from os import path
+from random import shuffle
 import matplotlib.pyplot as plt
 from scipy.spatial.distance import squareform
 from scipy.cluster.hierarchy import dendrogram, linkage, set_link_color_palette
@@ -18,10 +19,12 @@ import functions as fun
 VOTES_RAW = {i: PLYRS[i]['votes'] for i in PLYRS.keys()}
 (NAMES, VOTES) = (list(VOTES_RAW.keys()), list(VOTES_RAW.values()))
 mat = np.genfromtxt(path.join(PT_DTA, FN_DST), delimiter=',')
+if cst.ANONYMIZE:
+    shuffle(NAMES)
 ###############################################################################
 # Process
 ###############################################################################
-print('(4) Plotting Dendrogram')
+print('(5) Plotting Dendrogram')
 dists = squareform(mat)
 linkage_matrix = linkage(dists, 'ward')
 ###############################################################################

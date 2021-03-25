@@ -3,7 +3,7 @@ import votes as vos
 from scipy.spatial.distance import euclidean, cosine
 
 
-PRINT_STATS = False
+(PRINT_STATS, ANONYMIZE) = (False, False)
 ###############################################################################
 # Paths and Filenames
 ###############################################################################
@@ -45,7 +45,8 @@ PLYRS = {
     'April':    {'color': '#2EB2FF', 'votes': vos.APRIL },
     'Chip':     {'color': '#2837af', 'votes': vos.CHIP  },
     'Chris':    {'color': '#45d40c', 'votes': vos.CHRIS },
-    'Leo':      {'color': '#FF9175', 'votes': vos.LEO   }, 
+    'Leo':      {'color': '#FF9175', 'votes': vos.LEO   },
+    'Mario':    {'color': '#FF8019', 'votes': vos.MARIO },
     'Mary':     {'color': '#757aff', 'votes': vos.MARY  },
     'Memo':     {'color': '#e30018', 'votes': vos.MEMO  },
     'Riché':    {'color': '#f00fbf', 'votes': vos.RICHIE},

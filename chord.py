@@ -2,6 +2,7 @@
 import numpy as np
 from os import path
 import pandas as pd
+from random import shuffle
 from pywaffle import Waffle
 import matplotlib.pyplot as plt
 from mpl_chord_diagram import chord_diagram
@@ -26,15 +27,18 @@ COLORS = [(i + cst.ALPHA_HEX) for i in COLORS]
 VOTES_RAW = {i: PLYRS[i]['votes'] for i in PLYRS.keys()}
 (NAMES, VOTES) = (list(VOTES_RAW.keys()), list(VOTES_RAW.values()))
 matRan = np.genfromtxt(path.join(PT_DTA, FN_SCA), delimiter=',')
+if cst.ANONYMIZE:
+    shuffle(NAMES)
+    shuffle(COLORS)
 ###############################################################################
 # Chord Diagram
 ###############################################################################
-print('(5) Plotting Chord Diagram')
+print('(6) Plotting Chord Diagram')
 (fig, ax) = plt.subplots()
 chord_diagram(
     matRan, names=NAMES, colors=COLORS, alpha=.6,
-    use_gradient=True, width=0.1, chordwidth=.4,
-    order=[NAMES.index(i) for i in NAMES]
+    use_gradient=True, width=0.1, chordwidth=.4
+    # order=[NAMES.index(i) for i in NAMES]
     # sorts='distance'
 )
 plt.savefig(
