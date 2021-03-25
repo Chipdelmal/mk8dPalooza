@@ -1,1 +1,2 @@
-# mk8dPalooza
+# MK8D: Luma Invitational
+

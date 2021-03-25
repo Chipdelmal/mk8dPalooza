@@ -18,6 +18,7 @@ NAMES = list(PLYRS.keys())
 ###############################################################################
 # Distance
 ###############################################################################
+print('(2) Calculating Similarity Matrices')
 distMat = fun.distanceMatrix(VOTES_DF, NAMES, distFun=DFUN)
 distNrm = np.asarray([[i/sum(row) for i in row] for row in distMat])
 distSca = np.asarray([
