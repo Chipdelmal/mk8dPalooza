@@ -21,21 +21,23 @@ SORTING = [int(i) for i in sorted(VOTES_DF.loc['Total'])][::-1]
 ###############################################################################
 # Plots
 ###############################################################################
-print('(3) Plotting Waffles')
+print('(6) Plotting Waffles')
 for (ix, track) in enumerate(cst.TRACKS):
     print('\t* {}{}'.format(track, ' '*10), end='\r')
     votes = int(VOTES_DF[track]['Total'])
     values = list(VOTES_DF[track][NAMES])
     if cst.PRINT_STATS:
         label = '{}. {} ({}) \n(μ: {:.2f}, M: {:.2f}, σ: {:.2f})\n'.format(
-            str(len(TRK_SET)-(ix+1)).zfill(2), track, votes, 
+            str(len(TRK_SET)-(ix+1)).zfill(2), 
+            track, votes, 
             VOTES_DF[track]['Mean'], 
             VOTES_DF[track]['Median'], 
             VOTES_DF[track]['SD']
         )
     else:
         label = "{} ({}) {}: {}\n".format(
-            str(SORTING.index(votes)+1).zfill(2), SORTING.count(votes),
+            str(SORTING.index(votes)+1).zfill(2), 
+            SORTING.count(votes),
             track, votes
         )
     fig = plt.figure( 
@@ -43,9 +45,9 @@ for (ix, track) in enumerate(cst.TRACKS):
         labels=NAMES + [cst.VOID[0]],
         colors=COLORS + [cst.VOID[1]],
         FigureClass=Waffle,
-        vertical=False, columns=10, rows=5,
-        block_arranging_style='new-line', block_aspect_ratio=1,
-        rounding_rule='floor', starting_location='NW',
+        vertical=False, columns=10, # rows=10,
+        block_arranging_style='new-line', block_aspect_ratio=2,
+        starting_location='NW',
         title={
             'label': label, 'loc': 'center', 
             'fontdict': {'fontsize': 20, 'color': '#000000'}
@@ -59,7 +61,7 @@ for (ix, track) in enumerate(cst.TRACKS):
     fig.ax.set_aspect(1)
     plt.axis('off')
     fig.savefig(
-        './plt/WF_{}_{}.png'.format(str(votes).zfill(2), track), 
+        path.join(PT_PLT, 'WF_{}_{}.png'.format(str(votes).zfill(2), track)), 
         dpi=500, bbox_inches='tight'
     )
     plt.close('all')

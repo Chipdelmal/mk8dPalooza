@@ -18,12 +18,12 @@ VOTES_RAW = {i: PLYRS[i]['votes'] for i in PLYRS.keys()}
 # Validate 
 ###############################################################################
 valid = fun.validateEntries(VOTES, TRK_SET)
-msg = '(1) Checking for consistency:'
+msg = '(1) Checking for consistency'
 # Print validation ------------------------------------------------------------
 if all(valid):
-    print('{} [All entries are valid]'.format(msg))
+    print('{} (all entries are valid)'.format(msg))
 else:
-    print('{} [{}  contains errors!]'.format(msg, NAMES[valid.index(False)]))
+    print('{} ({}  contains errors!)'.format(msg, NAMES[valid.index(False)]))
 ###############################################################################
 # Collate
 ###############################################################################
