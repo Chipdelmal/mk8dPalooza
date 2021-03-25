@@ -11,7 +11,7 @@ from sklearn.preprocessing import normalize
 from scipy.spatial.distance import squareform
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics.pairwise import cosine_similarity
-from scipy.cluster.hierarchy import dendrogram, linkage
+from scipy.cluster.hierarchy import dendrogram, linkage, set_link_color_palette
 import constant as cst
 import functions as fun
 
@@ -140,14 +140,20 @@ plt.close('all')
 # Dendrogram
 ###############################################################################
 (fig, ax) = plt.subplots()
+set_link_color_palette(['m', 'b', 'k'])
 dists = squareform(mat)
 linkage_matrix = linkage(dists, "ward")
-dend = dendrogram(linkage_matrix, labels=NAMES, orientation='right') # color_threshold=0,
+dend = dendrogram(
+    linkage_matrix, labels=NAMES, orientation='right',
+    above_threshold_color='#bcbddc'
+) # color_threshold=0,
 ax.set_aspect(.005)
 plt.xticks([])
 ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
 ax.spines['bottom'].set_visible(False)
+dir(ax.spines['left'])
+ax.spines['left'].set_color('#ffffff')
 fig.savefig(
     './plt/DN.png', 
     dpi=500, bbox_inches='tight'
@@ -159,7 +165,7 @@ plt.close('all')
 (fig, ax) = plt.subplots()
 chord_diagram(
     matRan, names=NAMES, colors=COLORS[:-1], alpha=.6,
-    use_gradient=True, sorts='distance', width=0.1, chordwidth=1
+    use_gradient=True, sorts='distance', width=0.1, chordwidth=.5
     # order=[NAMES.index(i) for i in dend['ivl']]
 )
 plt.savefig(

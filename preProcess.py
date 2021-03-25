@@ -20,7 +20,7 @@ VOTES_RAW = {i: PLYRS[i]['votes'] for i in PLYRS.keys()}
 valid = fun.validateEntries(VOTES, TRK_SET)
 print('(1) Check for consistency:')
 for (ix, i) in enumerate(valid):
-    print('\t- {}: {}'.format(NAMES[ix], valid[ix]))
+    print('\t* {}: {}'.format(NAMES[ix], valid[ix]))
 # Print validation ------------------------------------------------------------
 if all(valid):
     print('\t* [All entries are valid]')

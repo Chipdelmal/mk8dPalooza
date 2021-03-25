@@ -1,5 +1,6 @@
 
 import votes as vos
+from scipy.spatial.distance import euclidean, cosine
 
 
 PRINT_STATS = False
@@ -7,7 +8,14 @@ PRINT_STATS = False
 # Paths and Filenames
 ###############################################################################
 (PT_DTA, PT_PLT) = ('./dta/', './plt/')
-FN_DTA = 'votesDataframe.csv'
+(FN_DTA, FN_DST, FN_SCA) = (
+    'votesDataframe.csv', 'distMatrix.csv', 'scaledMatrix.csv'
+)
+###############################################################################
+# Distance matrix
+###############################################################################
+DIST_FUN = cosine
+RANGE = (10, 100)
 
 ###############################################################################
 # List of Valid Tracks
@@ -30,6 +38,7 @@ TRACKS = [
 ###############################################################################
 # Players Colors
 ###############################################################################
+ALPHA_HEX = '95'
 PLYRS = {
     'Alele':    {'color': '#ADE300', 'votes': vos.ALELE },
     'Amaya':    {'color': '#92a0ab', 'votes': vos.AMAYA }, 
@@ -44,4 +53,3 @@ PLYRS = {
     'Yami':     {'color': '#F15062', 'votes': vos.YAMI  }  
 }
 VOID = ('', '#ffffff')
-ALPHA_HEX = '95'

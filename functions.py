@@ -1,5 +1,8 @@
 
 import math
+import numpy as np
+from scipy.spatial import distance
+
 
 def flattenList(newlist):
     return [item for items in newlist for item in items]
@@ -36,3 +39,14 @@ def validateEntries(votes, TRK_SET):
 
 def roundup(x):
     return int(math.ceil(x / 10.0)) * 10
+
+
+def distanceMatrix(votesDF, names, distFun=distance.euclidean, diagFill=0):
+    mat = []
+    for a in [np.asarray(votesDF.loc[nme].values) for nme in names]:
+        mat.append([
+            distFun(a, np.asarray(votesDF.loc[b].values)) for b in names
+        ])
+    mat = np.asarray(mat)
+    np.fill_diagonal(mat, diagFill)
+    return mat

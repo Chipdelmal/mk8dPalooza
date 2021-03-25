@@ -21,7 +21,7 @@ SORTING = [int(i) for i in sorted(VOTES_DF.loc['Total'])][::-1]
 ###############################################################################
 # Plots
 ###############################################################################
-print('* Plot:')
+print('(2) Plot Waffles:')
 for (ix, track) in enumerate(cst.TRACKS):
     print('\t* {}\r'.format(track))
     votes = int(VOTES_DF[track]['Total'])
