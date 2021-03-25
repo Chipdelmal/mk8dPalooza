@@ -12,6 +12,20 @@
 
 The scripts can be run independently provided that the dataframe has already been exported (and the distance matrix for the matrix plots).
 
+
+## Dependencies
+
+Required dependencies can be installed into an environment with the `./conda/REQUIREMENTS.txt`, `./conda/REQUIREMENTS.yml` or by running:
+
+```
+pip install numpy
+pip install pandas
+pip install matplotlib
+pip install scipy
+pip install pywaffle
+pip install mpl-chord-diagram
+```
+
 <hr>
 
 ## Author
