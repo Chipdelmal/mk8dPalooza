@@ -8,8 +8,9 @@ from scipy.spatial.distance import euclidean, cosine
 # Paths and Filenames
 ###############################################################################
 (PT_DTA, PT_PLT) = ('./dta/', './plt/')
-(FN_DTA, FN_DST, FN_SCA) = (
-    'votesDataframe.csv', 'distMatrix.csv', 'scaledMatrix.csv'
+(FN_DTA, FN_RSP, FN_DST, FN_SCA) = (
+    'votesDataframe.csv', 'votesReshape.csv',
+    'distMatrix.csv', 'scaledMatrix.csv'
 )
 ###############################################################################
 # Distance matrix

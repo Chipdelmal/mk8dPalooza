@@ -8,3 +8,4 @@ python matrix.py
 python dendrogram.py
 python chord.py
 python waffles.py
+python treemap.py

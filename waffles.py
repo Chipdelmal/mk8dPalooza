@@ -1,4 +1,6 @@
 
+# https://plotly.com/python/treemaps/
+
 from os import path
 import pandas as pd
 from random import shuffle
@@ -52,7 +54,7 @@ for (ix, track) in enumerate(TRACKS):
         colors=COLORS + [cst.VOID[1]],
         FigureClass=Waffle,
         vertical=False, columns=10, # rows=10,
-        block_arranging_style='new-line', block_aspect_ratio=2,
+        block_arranging_style='snake', block_aspect_ratio=2,
         starting_location='NW',
         title={
             'label': label, 'loc': 'center', 
@@ -71,3 +73,5 @@ for (ix, track) in enumerate(TRACKS):
         dpi=500, bbox_inches='tight'
     )
     plt.close('all')
+
+
