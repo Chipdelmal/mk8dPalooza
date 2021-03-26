@@ -54,11 +54,11 @@ for (ix, track) in enumerate(TRACKS):
         colors=COLORS + [cst.VOID[1]],
         FigureClass=Waffle,
         vertical=False, columns=10, # rows=10,
-        block_arranging_style='snake', block_aspect_ratio=2,
+        block_arranging_style='normal', block_aspect_ratio=2,
         starting_location='NW',
         title={
             'label': label, 'loc': 'center', 
-            'fontdict': {'fontsize': 20, 'color': '#000000'}
+            'fontdict': {'fontsize': 25, 'color': '#000000'}
         },
         legend={
             'loc': 'lower left', 'bbox_to_anchor': (0, -0.4),
@@ -73,5 +73,4 @@ for (ix, track) in enumerate(TRACKS):
         dpi=500, bbox_inches='tight'
     )
     plt.close('all')
-
 
