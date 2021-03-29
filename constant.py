@@ -1,6 +1,7 @@
 
 import votes as vos
 from scipy.spatial.distance import euclidean, cosine
+import functions as fun
 
 
 (PRINT_STATS, ANONYMIZE) = (False, False)
@@ -55,3 +56,10 @@ PLYRS = {
     'Yami':     {'color': '#F15062', 'votes': vos.YAMI  }  
 }
 VOID = ('', '#ffffff')
+
+
+###############################################################################
+# Cmaps
+###############################################################################
+AL_MAP = ['#FF006E', '#0C4887', '#e30018', '#f00fbf', '#45d40c']
+CMAPS = fun.generateAlphaColorMapFromColorArray(AL_MAP)

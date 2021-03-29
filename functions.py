@@ -1,7 +1,9 @@
 
 import math
+import matplotlib
 import numpy as np
 from scipy.spatial import distance
+from matplotlib.colors import LinearSegmentedColormap
 
 
 def flattenList(newlist):
@@ -50,3 +52,32 @@ def distanceMatrix(votesDF, names, distFun=distance.euclidean, diagFill=0):
     mat = np.asarray(mat)
     np.fill_diagonal(mat, diagFill)
     return mat
+
+
+def addHexOpacity(colors, alpha='1A'):
+    return [c+alpha for c in colors]
+
+
+def replaceHexOpacity(colors, alpha='FF'):
+    return [i[:-2]+alpha for i in colors]
+
+
+def generateAlphaColorMapFromColor(
+    color
+):
+    alphaMap = LinearSegmentedColormap.from_list(
+        'tempMap',
+        [(0.0, 0.0, 0.0, 0.0), color],
+        gamma=0
+    )
+    return alphaMap
+
+
+def generateAlphaColorMapFromColorArray(
+    colorArray
+):
+    elementsNumb = len(colorArray)
+    cmapsList = [None] * elementsNumb
+    for i in range(0, elementsNumb):
+        cmapsList[i] = generateAlphaColorMapFromColor(colorArray[i])
+    return cmapsList

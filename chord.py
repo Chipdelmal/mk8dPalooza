@@ -46,6 +46,6 @@ chord_diagram(
 )
 plt.savefig(
     path.join(PT_PLT, 'CH.png'),
-    dpi=500, bbox_inches='tight'
+    dpi=500, bbox_inches='tight', facecolor='w'
 )
 plt.close('all')

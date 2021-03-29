@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 plt/
 *.webp
+*.svg
 
 # C extensions
 *.so

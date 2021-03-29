@@ -19,7 +19,20 @@ colDict = {i: PLYRS[i]['color']+cst.ALPHA_HEX for i in PLYRS}
 colDict['(?)']='EAEAEA'
 fig = px.treemap(
     VOTES_RS, path=['Track', 'Name'], values='Votes',
-    color='Name', color_discrete_map=colDict
+    color='Name', color_discrete_map=colDict,
+    title='MK8D Palooza'
 )
 # fig.show()
 fig.write_html(path.join(PT_PLT, 'treemap.html'))
+###############################################################################
+# Plot barchart
+###############################################################################
+print('(9) Plotting BarChart')
+colDict = {i: PLYRS[i]['color'] for i in PLYRS}
+fig = px.bar(VOTES_RS, 
+    x="Track", y="Votes", color="Name", title="MK8D Palooza",
+    color_discrete_map=colDict
+)
+# fig.update_layout(barmode='stack', xaxis={'categoryorder':'total ascending'})
+# fig.show()
+fig.write_html(path.join(PT_PLT, 'barchart.html'))

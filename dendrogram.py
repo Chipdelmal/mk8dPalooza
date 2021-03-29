@@ -31,20 +31,22 @@ linkage_matrix = linkage(dists, 'ward')
 # Plot
 ###############################################################################
 (fig, ax) = plt.subplots()
-set_link_color_palette(['m', 'b', 'k'])
+set_link_color_palette(['#ff006e', '#2614ed', 'k'])
 dend = dendrogram(
     linkage_matrix, 
     labels=NAMES, orientation='right',
-    above_threshold_color='#bcbddc'
+    above_threshold_color='#bcbddcA0', 
+    count_sort='descending'
 )
-ax.set_aspect(.005)
+ax.set_aspect(.0025)
 plt.xticks([])
 ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
 ax.spines['bottom'].set_visible(False)
 ax.spines['left'].set_color('#ffffff')
+plt.title('Hierarchical Clustering\n', fontdict={'size': 18})
 fig.savefig(
     path.join(PT_PLT, 'DN.png'), 
-    dpi=500, bbox_inches='tight'
+    dpi=500, bbox_inches='tight', facecolor='w'
 )
 plt.close('all')

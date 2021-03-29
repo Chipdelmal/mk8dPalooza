@@ -62,7 +62,7 @@ for (ix, track) in enumerate(TRACKS):
         },
         legend={
             'loc': 'lower left', 'bbox_to_anchor': (0, -0.4),
-            'ncol': 5, 'framealpha': 0, 'fontsize': 12
+            'ncol': 5, 'framealpha': 0, 'fontsize': 12, 'labelcolor':'#000000'
         }
     )
     fig.set_size_inches(10, 5)
@@ -70,7 +70,7 @@ for (ix, track) in enumerate(TRACKS):
     plt.axis('off')
     fig.savefig(
         path.join(PT_PLT, 'WF_{}_{}.png'.format(str(votes).zfill(2), track)), 
-        dpi=500, bbox_inches='tight'
+        dpi=500, bbox_inches='tight', facecolor='w'
     )
     plt.close('all')
 
