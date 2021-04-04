@@ -11,7 +11,7 @@ import functions as fun
 
 
 (PT_DTA, PT_PLT, FN_DTA) = (cst.PT_DTA, cst.PT_PLT, cst.FN_DTA)
-(PLYRS, TRK_SET) = (cst.PLYRS, set(cst.TRACKS))
+(PLYRS, TRK_SET, LEGEND) = (cst.PLYRS, set(cst.TRACKS), cst.WF_LEGEND)
 ###############################################################################
 # Read data and get constants
 ###############################################################################
@@ -34,6 +34,9 @@ for (ix, track) in enumerate(TRACKS):
     print('\t* {}{}'.format(track, ' '*10), end='\r')
     votes = int(VOTES_DF[track]['Total'])
     values = list(VOTES_DF[track][NAMES])
+    tSize = 27.5
+    if LEGEND:
+        tSize = 22.5
     if cst.PRINT_STATS:
         label = '{}. {} ({}) \n(μ: {:.2f}, M: {:.2f}, σ: {:.2f})\n'.format(
             str(len(TRK_SET)-(ix+1)).zfill(2), 
@@ -53,24 +56,31 @@ for (ix, track) in enumerate(TRACKS):
         labels=NAMES + [cst.VOID[0]],
         colors=COLORS + [cst.VOID[1]],
         FigureClass=Waffle,
-        vertical=False, columns=10, # rows=10,
+        vertical=False, rows=10,
         block_arranging_style='normal', block_aspect_ratio=2,
         starting_location='NW',
         title={
             'label': label, 'loc': 'center', 
-            'fontdict': {'fontsize': 25, 'color': '#000000'}
+            'fontdict': {'fontsize': tSize, 'color': '#000000'}
         },
         legend={
-            'loc': 'lower left', 'bbox_to_anchor': (0, -0.4),
-            'ncol': 5, 'framealpha': 0, 'fontsize': 12, 'labelcolor':'#000000'
+            # 'loc': 'upper right', 'bbox_to_anchor': (0, 0), 'mode': "expand",
+            'bbox_to_anchor': (1.05, 1), 'loc': 'upper left', 'borderaxespad': 0,
+            'ncol': 1, 'framealpha': 0, 'fontsize': 12, 'labelcolor':'#000000'
         }
     )
     fig.set_size_inches(10, 5)
     fig.ax.set_aspect(1)
     plt.axis('off')
+    prep = 'LBL_'
+    if not LEGEND:
+        plt.gca().get_legend().remove()
+        prep = ''
     fig.savefig(
-        path.join(PT_PLT, 'WF_{}_{}.png'.format(str(votes).zfill(2), track)), 
-        dpi=500, bbox_inches='tight', facecolor='w'
+        path.join(
+            PT_PLT, prep+'WF_{}_{}.png'.format(str(votes).zfill(2), track)
+        ), 
+        dpi=500, facecolor='w', bbox_inches='tight', pad_inches=0.2
     )
     plt.close('all')
 

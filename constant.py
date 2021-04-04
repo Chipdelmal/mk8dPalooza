@@ -4,7 +4,7 @@ from scipy.spatial.distance import euclidean, cosine
 import functions as fun
 
 
-(PRINT_STATS, ANONYMIZE) = (False, False)
+(PRINT_STATS, ANONYMIZE, WF_LEGEND) = (False, False, True)
 ###############################################################################
 # Paths and Filenames
 ###############################################################################
@@ -55,7 +55,7 @@ PLYRS = {
     'Tomás':    {'color': '#FCE900', 'votes': vos.TOMAS },
     'Yami':     {'color': '#F15062', 'votes': vos.YAMI  }  
 }
-VOID = ('', '#ffffff')
+VOID = ('Padding', '#F7F7F8')
 
 
 ###############################################################################
@@ -63,3 +63,10 @@ VOID = ('', '#ffffff')
 ###############################################################################
 AL_MAP = ['#FF006E', '#0C4887', '#e30018', '#f00fbf', '#45d40c']
 CMAPS = fun.generateAlphaColorMapFromColorArray(AL_MAP)
+
+
+
+REVEAL_ORDER = [
+    'Mary', 'Chris', 'Riché', 'Leo', 'Alele', 'Tomás', 
+    'Mario', 'Yami', 'April', 'Chip', 'Memo', 'Amaya'
+]
