@@ -55,7 +55,7 @@ PLYRS = {
     'Tomás':    {'color': '#FCE900', 'votes': vos.TOMAS },
     'Yami':     {'color': '#F15062', 'votes': vos.YAMI  }  
 }
-VOID = ('Padding', '#F7F7F8')
+VOID = ('', '#F7F7F8')
 
 
 ###############################################################################

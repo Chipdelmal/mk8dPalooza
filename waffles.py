@@ -65,7 +65,7 @@ for (ix, track) in enumerate(TRACKS):
         },
         legend={
             # 'loc': 'upper right', 'bbox_to_anchor': (0, 0), 'mode': "expand",
-            'bbox_to_anchor': (1.05, 1), 'loc': 'upper left', 'borderaxespad': 0,
+            'bbox_to_anchor': (1.025, 1), 'loc': 'upper left', 'borderaxespad': 0,
             'ncol': 1, 'framealpha': 0, 'fontsize': 12, 'labelcolor':'#000000'
         }
     )
