@@ -47,13 +47,13 @@ PLYRS = {
     'April':    {'color': '#2EB2FF', 'votes': vos.APRIL },
     'Chip':     {'color': '#2837af', 'votes': vos.CHIP  },
     'Chris':    {'color': '#45d40c', 'votes': vos.CHRIS },
-    'Leo':      {'color': '#FF9175', 'votes': vos.LEO   },
+    'Leo':      {'color': '#FF91D0', 'votes': vos.LEO   },
     'Mario':    {'color': '#FF8019', 'votes': vos.MARIO },
     'Mary':     {'color': '#757aff', 'votes': vos.MARY  },
     'Memo':     {'color': '#e30018', 'votes': vos.MEMO  },
     'Riché':    {'color': '#f00fbf', 'votes': vos.RICHIE},
     'Tomás':    {'color': '#FCE900', 'votes': vos.TOMAS },
-    'Yami':     {'color': '#F15062', 'votes': vos.YAMI  }  
+    'Yami':     {'color': '#F15070', 'votes': vos.YAMI  }  
 }
 VOID = ('', '#F7F7F8')
 
