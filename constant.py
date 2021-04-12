@@ -63,10 +63,3 @@ VOID = ('', '#F7F7F8')
 ###############################################################################
 AL_MAP = ['#FF006E', '#0C4887', '#e30018', '#f00fbf', '#45d40c']
 CMAPS = fun.generateAlphaColorMapFromColorArray(AL_MAP)
-
-
-
-REVEAL_ORDER = [
-    'Mary', 'Chris', 'Riché', 'Leo', 'Alele', 'Tomás', 
-    'Mario', 'Yami', 'April', 'Chip', 'Memo', 'Amaya'
-]

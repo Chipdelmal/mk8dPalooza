@@ -81,3 +81,23 @@ def generateAlphaColorMapFromColorArray(
     for i in range(0, elementsNumb):
         cmapsList[i] = generateAlphaColorMapFromColor(colorArray[i])
     return cmapsList
+
+
+def move_legend(ax, new_loc, **kws):
+    old_legend = ax.legend_
+    handles = old_legend.legendHandles
+    labels = [t.get_text() for t in old_legend.get_texts()]
+    title = old_legend.get_title().get_text()
+    ax.legend(handles, labels, loc=new_loc, **kws)
+
+
+def change_width(ax, new_value) :
+    for patch in ax.patches :
+        current_width = patch.get_width()
+        diff = current_width - new_value
+
+        # we change the bar width
+        patch.set_width(new_value)
+
+        # we recenter the bar
+        patch.set_x(patch.get_x() + diff * .5)
