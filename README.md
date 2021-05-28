@@ -1,5 +1,11 @@
 # MK8D: Luma Invitational
 
+For a full breakdown of this story, follow: https://chipdelmal.github.io/blog/posts/mk8dsoulmates
+
+![](https://chipdelmal.github.io/blog/uploads/sm_CH.png)
+
+## Instructions
+
 `main.sh` script runs the whole pipeline, which consists of the following steps:
 
 0. `constant.py`: Runs the constants for color, votes, tracks names, and related snips necessary for all the plots.
