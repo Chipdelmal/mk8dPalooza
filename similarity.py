@@ -33,3 +33,19 @@ np.fill_diagonal(distSca, 0)
 ###############################################################################
 np.savetxt(path.join(PT_DTA, cst.FN_DST), distMat, delimiter=',')
 np.savetxt(path.join(PT_DTA, cst.FN_SCA), distSca, delimiter=',')
+###############################################################################
+# Final Stat (Winner is the closest to the total)
+###############################################################################
+stt = 'Median'
+nmes = NAMES+[stt]
+cpyDta = VOTES_DF.copy()
+# cpyDta.loc[stt] = VOTES_DF.loc[stt]/len(NAMES)
+distMat = fun.distanceMatrix(cpyDta, nmes, distFun=DFUN)
+distNrm = np.asarray([[i/sum(row) for i in row] for row in distMat])
+distSca = np.asarray([
+    np.interp(a, (min(i for i in a if i > 0), a.max()), RAN) for a in distNrm
+])
+winner = {nmes[i]: distSca[-1][i] for i in range(len(nmes))}
+srtd = dict(sorted(winner.items(), key=lambda item: item[1]))
+srtd.pop(stt)
+srtd

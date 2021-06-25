@@ -32,11 +32,16 @@ fig.write_html(path.join(PT_PLT, 'treemap.html'))
 print('(9) Plotting BarChart')
 colDict = {i: PLYRS[i]['color'] for i in PLYRS}
 fig = px.bar(VOTES_RS, 
-    x="Track", y="Votes", color="Name", title="MK8D Palooza",
+    x="Track", y="Votes", color="Name", #title="MK8D Palooza",
     color_discrete_map=colDict
 )
 fig.update_traces(opacity=0.75)
-# fig.update_layout(barmode='stack', xaxis={'categoryorder':'total ascending'})
+fig.update_layout(
+    barmode='stack', #barmode='relative',
+    xaxis={'categoryorder':'total ascending'}
+)
+fig.update_xaxes(showticklabels=True, title_text=None, tickangle=270+45)
+fig.update_yaxes(showticklabels=True, title_text="Votes", title_font = {"size": 20})
 # fig.show()
 fig.write_html(path.join(PT_PLT, 'barchart.html'))
 ###############################################################################

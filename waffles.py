@@ -46,9 +46,9 @@ for (ix, track) in enumerate(TRACKS):
             VOTES_DF[track]['SD']
         )
     else:
-        label = "{} ({}) {}: {}\n".format(
+        label = "{}. {} ({})\n".format(
             str(SORTING.index(votes)+1).zfill(2), 
-            SORTING.count(votes),
+            # SORTING.count(votes),
             track, votes
         )
     fig = plt.figure( 
